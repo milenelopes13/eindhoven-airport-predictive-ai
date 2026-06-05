@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eindhoven Airport Predictive AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <p class="tag">Assignment 5.3A</p>
+    <h1>Predictive AI Customer Group Analysis</h1>
+    <p>
+      This tool uses measurable Eindhoven Airport KPIs to create customer profile groups, link them to marketing actions,
+      and predict which group a new passenger is most likely to belong to.
+    </p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1. AI customer profile groups</h2>
+      <p class="intro">The groups are based on measurable KPIs: customer satisfaction, staff service score, non-aviation spending, purchase frequency and complaint likelihood.</p>
+
+      <div class="grid">
+        <div class="group">
+          <h3>High-Value Passenger</h3>
+          <p>High spend, frequent purchases and strong satisfaction.</p>
+          <b>Airport improvement:</b>
+          <span>Increase non-aviation revenue through targeted retail and loyalty offers.</span>
+        </div>
+
+        <div class="group">
+          <h3>Loyal Passenger</h3>
+          <p>High satisfaction, strong staff service score and low complaint likelihood.</p>
+          <b>Airport improvement:</b>
+          <span>Maintain service quality and encourage repeat airport use.</span>
+        </div>
+
+        <div class="group">
+          <h3>Revenue Opportunity Passenger</h3>
+          <p>Positive experience but low spend or low purchase frequency.</p>
+          <b>Airport improvement:</b>
+          <span>Use promotions to increase airport store purchases.</span>
+        </div>
+
+        <div class="group">
+          <h3>At-Risk Passenger</h3>
+          <p>Lower satisfaction, weaker staff service score or higher complaint likelihood.</p>
+          <b>Airport improvement:</b>
+          <span>Improve service recovery and reduce negative feedback.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card predictor-card">
+      <h2>2. New customer group predictor</h2>
+      <p class="intro">Enter a new passenger profile. The AI predicts the likelihood of the customer ending up in each group.</p>
+
+      <div class="predictor">
+        <div class="form">
+          <label>Travel purpose
+            <select id="purpose">
+              <option value="business">Business trip</option>
+              <option value="leisure">Leisure / holiday</option>
+              <option value="family">Family trip</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+
+          <label>Average spend in airport stores (€)
+            <input id="spend" type="number" value="25" min="0" />
+          </label>
+
+          <label>Purchase frequency (number of purchases)
+            <input id="purchase" type="number" value="1" min="0" />
+          </label>
+
+          <label>Passenger satisfaction score (/5)
+            <input id="satisfaction" type="number" value="4.0" min="1" max="5" step="0.1" />
+          </label>
+
+          <label>Staff service score (/5)
+            <input id="staff" type="number" value="4.1" min="1" max="5" step="0.1" />
+          </label>
+
+          <label>Complaint likelihood (%)
+            <input id="complaint" type="number" value="12" min="0" max="100" />
+          </label>
+
+          <button id="run">Run prediction</button>
+        </div>
+
+        <div class="result">
+          <p class="small">Predicted customer group</p>
+          <h3 id="topGroup">High-Value Passenger</h3>
+          <p id="explanation">This passenger is predicted to create strong value for Eindhoven Airport.</p>
+
+          <div class="bar-row">
+            <span>High-Value</span>
+            <div><i id="barHigh"></i></div>
+            <b id="pctHigh">0%</b>
+          </div>
+
+          <div class="bar-row">
+            <span>Loyal</span>
+            <div><i id="barLoyal"></i></div>
+            <b id="pctLoyal">0%</b>
+          </div>
+
+          <div class="bar-row">
+            <span>Revenue Opportunity</span>
+            <div><i id="barRevenue"></i></div>
+            <b id="pctRevenue">0%</b>
+          </div>
+
+          <div class="bar-row">
+            <span>At-Risk</span>
+            <div><i id="barRisk"></i></div>
+            <b id="pctRisk">0%</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. Marketing and improvement recommendation</h2>
+      <p class="intro">The predicted group is used to choose a targeted action that helps Eindhoven Airport improve performance.</p>
+      <div class="recommendation" id="recommendation">
+        Increase non-aviation revenue with targeted retail offers and loyalty promotions.
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
