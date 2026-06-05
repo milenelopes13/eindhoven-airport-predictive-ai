@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eindhoven Airport Predictive AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Assignment 5.3A • Predictive AI</p>
+      <h1>Eindhoven Airport Passenger Segmentation AI</h1>
+      <p class="hero-text">A centralized predictive AI model that creates customer profile groups, connects them to marketing actions, and predicts which group a new passenger will most likely belong to.</p>
+    </div>
+    <div class="score-card">
+      <span>Overall model goal</span>
+      <strong>Improve passenger experience + non-aviation revenue</strong>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Centralized dataset connection</h2>
+      <p>The AI combines the different workbook tabs into one passenger-focused model. Each tab adds a different part of the passenger journey.</p>
+      <div class="tabs-grid">
+        <div><strong>Passengers</strong><span>passenger volume, age group, travel purpose</span></div>
+        <div><strong>Customer Feedback</strong><span>satisfaction, complaints, service rating</span></div>
+        <div><strong>Stores</strong><span>average spend, conversion rate, store satisfaction</span></div>
+        <div><strong>HR + eNPS</strong><span>employee engagement, service quality impact</span></div>
+        <div><strong>Flight Movements</strong><span>peak moments and passenger flow context</span></div>
+        <div><strong>Cleaning Log</strong><span>cleanliness score and operational quality</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title">
+        <h2>1. AI customer profile groups</h2>
+        <p>Created from measurable passenger behaviour, satisfaction and spending indicators.</p>
+      </div>
+      <div class="segments">
+        <article>
+          <h3>Efficient Business Traveler</h3>
+          <p>Low dwell time, lower retail focus, high need for speed and convenience.</p>
+          <b>Marketing use:</b><span>Fast Track, business parking, lounge-style offers.</span>
+        </article>
+        <article>
+          <h3>Holiday Leisure Traveler</h3>
+          <p>Longer dwell time, medium spend, often travels during peak/holiday periods.</p>
+          <b>Marketing use:</b><span>Duty-free bundles, family food offers, seasonal campaigns.</span>
+        </article>
+        <article>
+          <h3>Retail-Oriented Passenger</h3>
+          <p>High store spend, higher dwell time and strong interest in food/retail offers.</p>
+          <b>Marketing use:</b><span>Restaurant vouchers, store discounts, loyalty promotions.</span>
+        </article>
+        <article>
+          <h3>Experience-Risk Passenger</h3>
+          <p>Lower satisfaction, higher complaint likelihood, more sensitive to queues/service issues.</p>
+          <b>Marketing use:</b><span>Recovery vouchers, service follow-up, targeted support.</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel predictor-panel">
+      <div class="section-title">
+        <h2>2. New passenger group predictor</h2>
+        <p>Enter a new passenger profile and the AI predicts the most likely customer group.</p>
+      </div>
+      <div class="predictor-layout">
+        <form id="predictorForm" class="form-grid">
+          <label>Travel purpose
+            <select id="purpose">
+              <option value="business">Business</option>
+              <option value="leisure" selected>Leisure / holiday</option>
+              <option value="family">Family trip</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>Average spend in airport stores (€)
+            <input id="spend" type="number" value="24" min="0" max="200" />
+          </label>
+          <label>Dwell time before flight (minutes)
+            <input id="dwell" type="number" value="65" min="0" max="240" />
+          </label>
+          <label>Passenger satisfaction score (/5)
+            <input id="satisfaction" type="number" value="3.8" step="0.1" min="1" max="5" />
+          </label>
+          <label>Queue time (minutes)
+            <input id="queue" type="number" value="18" min="0" max="90" />
+          </label>
+          <label>Staff service score (/5)
+            <input id="service" type="number" value="4.1" step="0.1" min="1" max="5" />
+          </label>
+          <button type="button" id="runBtn">Run prediction</button>
+        </form>
+
+        <div class="result-card">
+          <p class="eyebrow">Predicted customer group</p>
+          <h3 id="segmentName">Retail-Oriented Passenger</h3>
+          <div class="confidence"><span id="confidenceBar"></span></div>
+          <p><strong id="confidenceText">78%</strong> likelihood</p>
+          <p id="segmentReason">High spend and long dwell time indicate strong retail potential.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title">
+        <h2>3. Marketing recommendation engine</h2>
+        <p>The predicted customer group is translated into practical marketing actions for Eindhoven Airport.</p>
+      </div>
+      <div class="recommendation" id="recommendationBox">
+        <h3>Recommended campaign</h3>
+        <p>Offer a restaurant voucher or duty-free discount to increase non-aviation revenue during the passenger's dwell time.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title">
+        <h2>4. Airport impact dashboard</h2>
+        <p>Shows how the segmentation supports the airport's broader performance goals.</p>
+      </div>
+      <div class="kpi-grid">
+        <div><span>Predicted segment share</span><strong id="shareKpi">21%</strong><small>Retail-oriented passengers</small></div>
+        <div><span>Average spend unit</span><strong>€ / passenger</strong><small>Non-aviation revenue KPI</small></div>
+        <div><span>Satisfaction unit</span><strong>/5</strong><small>Customer feedback KPI</small></div>
+        <div><span>Queue time unit</span><strong>minutes</strong><small>Passenger journey KPI</small></div>
+      </div>
+      <div class="bars">
+        <div><span>Business</span><i style="width:24%"></i><b>24%</b></div>
+        <div><span>Leisure</span><i style="width:41%"></i><b>41%</b></div>
+        <div><span>Retail</span><i style="width:21%"></i><b>21%</b></div>
+        <div><span>Experience Risk</span><i style="width:14%"></i><b>14%</b></div>
+      </div>
+    </section>
+
+    <section class="panel assignment-check">
+      <h2>Assignment 5.3A checklist</h2>
+      <ul>
+        <li><strong>Customer profile groups:</strong> four AI-created passenger segments.</li>
+        <li><strong>Marketing purposes:</strong> each segment has specific campaigns and offers.</li>
+        <li><strong>Prediction for new customers:</strong> the form predicts the group a new passenger will end up in.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
